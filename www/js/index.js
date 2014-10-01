@@ -1,10 +1,11 @@
 var App = {
     initApplication: function () {
-        $( '.face' ).on( 'touchstart', App.onFaceTouched );
+        $( '.faces' ).on( 'touchstart', App.onFaceTouched );
+        App.downloadFaces();
     },
     onFaceTouched: function ( ev ) {
         ev.preventDefault();
-        var face = this.innerHTML;
+        var face = ev.target.innerHTML;
         console.log( face + " face touched" );
         App.copyToClipboard( face );
         App.showCopied( face );
@@ -14,7 +15,7 @@ var App = {
             window.plugins.clipboard.copy( face );
         }
         catch (err) {
-            alert(err.message);
+            console.log(err.message);
         }
     },
     showCopied: function (face) {
@@ -28,6 +29,23 @@ var App = {
 
         setTimeout( function () {
             $.mobile.loading( "hide" );
-        }, 1000);
+        }, 1000 );
+    },
+    downloadFaces: function () {
+        $.getJSON( "http://commentizer.altervista.org/faces.json",
+                   App.populateFaces,
+                   function(jqXHR, text_status, strError) { alert(strError) } );
+
+    },
+    populateFaces: function ( data ) {
+        var faces = $( ".faces" );
+        faces.empty();
+        $.each(data, function (index, face) {
+            faces.append(
+                $( "<li></li>" )
+                    .addClass("face")
+                    .html(face)
+            );
+        });
     }
 };
