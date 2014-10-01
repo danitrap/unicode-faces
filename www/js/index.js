@@ -4,9 +4,10 @@ var App = {
     },
     onFaceTouched: function ( ev ) {
         ev.preventDefault();
-        console.log( this.innerHTML + " face touched" );
-        App.copyToClipboard( this.innerHTML );
-        App.showCopied();
+        var face = this.innerHTML;
+        console.log( face + " face touched" );
+        App.copyToClipboard( face );
+        App.showCopied( face );
     },
     copyToClipboard: function ( face ) {
         try {
@@ -16,9 +17,9 @@ var App = {
             alert(err.message);
         }
     },
-    showCopied: function () {
+    showCopied: function (face) {
         $.mobile.loading( "show", {
-            text: "Face copied to clipboard.",
+            text: face + " copied to clipboard.",
             textVisible: true,
             theme: "b",
             textonly: true,
