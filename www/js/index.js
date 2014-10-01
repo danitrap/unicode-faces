@@ -1,6 +1,6 @@
 var App = {
     initApplication: function () {
-        $( '.faces' ).on( 'touchstart', App.onFaceTouched );
+        $( '.faces' ).on( 'touchstart', '.face', App.onFaceTouched );
         App.downloadFaces();
     },
     onFaceTouched: function ( ev ) {
@@ -32,8 +32,12 @@ var App = {
         }, 1000 );
     },
     downloadFaces: function () {
-        $.getJSON( "http://commentizer.altervista.org/faces.json", // http://commentizer.altervista.org/
-                   App.populateFaces );
+        $.ajax({
+            url: "http://commentizer.altervista.org/faces.json", // http://commentizer.altervista.org/
+            cache: false,
+            dataType: "json",
+            success: App.populateFaces
+        });
 
     },
     populateFaces: function ( data ) {
