@@ -26,5 +26,3 @@ var App = {
         }, 1000);
     }
 };
-
-// $(document).ready(App.initApplication);
