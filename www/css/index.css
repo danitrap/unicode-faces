@@ -1,0 +1,9 @@
+.faces {
+    text-align: center;
+    padding-bottom: 10px;
+}
+.face {
+    border: 1px solid #ccc;
+    height: 50px;
+    padding-top: 12px;
+}
