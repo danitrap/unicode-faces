@@ -32,19 +32,18 @@ var App = {
         }, 1000 );
     },
     downloadFaces: function () {
-        $.getJSON( "http://commentizer.altervista.org/faces.json",
-                   App.populateFaces,
-                   function(jqXHR, text_status, strError) { alert(strError) } );
+        $.getJSON( "http://commentizer.altervista.org/faces.json", // http://commentizer.altervista.org/
+                   App.populateFaces );
 
     },
     populateFaces: function ( data ) {
         var faces = $( ".faces" );
         faces.empty();
-        $.each(data, function (index, face) {
+        $.each( data, function ( index, face ) {
             faces.append(
                 $( "<li></li>" )
-                    .addClass("face")
-                    .html(face)
+                    .addClass( "face" )
+                    .html( face )
             );
         });
     }
