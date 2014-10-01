@@ -1,5 +1,6 @@
 var App = {
     initApplication: function () {
+        console.log("deviceready called");
         $('.face').click(App.onFaceTouch);
     },
     onFaceTouch: function (ev) {
@@ -26,5 +27,4 @@ var App = {
     }
 };
 
-$(document).one('deviceready', App.initApplication);
-$(document).ready(App.initApplication);
+// $(document).ready(App.initApplication);
