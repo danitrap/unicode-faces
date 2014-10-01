@@ -24,7 +24,7 @@ var App = {
             $.mobile.loading( "hide" );
         }, 1000);
     }
-}
+};
 
 $(document).one('deviceready', App.initApplication);
-// $(document).ready(App.initApplication);
+$(document).ready(App.initApplication);
