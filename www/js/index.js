@@ -1,8 +1,6 @@
 var App = {
     initApplication: function () {
-        $( '.face' ).on( 'ontouchstart', function () {
-                $( this ).trigger( "click" );
-            }).click( App.onFaceTouched );
+        $( '.face' ).on( 'touchstart', App.onFaceTouched );
     },
     onFaceTouched: function ( ev ) {
         ev.preventDefault();
