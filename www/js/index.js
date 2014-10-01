@@ -1,16 +1,22 @@
 var App = {
     initApplication: function () {
-        console.log("deviceready called");
-        $('.face').click(App.onFaceTouch);
+        $( '.face' ).on( 'ontouchstart', function () {
+                $( this ).trigger( "click" );
+            }).click( App.onFaceTouched );
     },
-    onFaceTouch: function (ev) {
+    onFaceTouched: function ( ev ) {
         ev.preventDefault();
-        console.log(this.innerHTML + " face touched");
-        App.copyToClipboard(this.innerHTML);
+        console.log( this.innerHTML + " face touched" );
+        App.copyToClipboard( this.innerHTML );
         App.showCopied();
     },
-    copyToClipboard: function (face) {
-        cordova.plugins.clipboard.copy(face);
+    copyToClipboard: function ( face ) {
+        try {
+            cordova.plugins.clipboard.copy( face );
+        }
+        catch (err) {
+            alert(err.message);
+        }
     },
     showCopied: function () {
         $.mobile.loading( "show", {
