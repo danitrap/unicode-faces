@@ -10,7 +10,9 @@ var App = {
     },
     copyToClipboard: function ( face ) {
         try {
-            cordova.plugins.clipboard.copy( face );
+            //cordova.plugins.clipboard.copy( face );
+            var clipboard = new Clipboard();
+            clipboard.copy( face );
         }
         catch (err) {
             alert(err.message);
